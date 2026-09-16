@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-oxc";
 import tailwindcss from "@tailwindcss/vite";
 import { octane } from "@octanejs/vite-plugin";
 import { cloudflare } from "@cloudflare/vite-plugin";

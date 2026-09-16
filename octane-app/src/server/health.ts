@@ -8,3 +8,5 @@
 export function health(): Response {
   return Response.json({ status: "ok" });
 }
+
+export default health;

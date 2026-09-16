@@ -1,87 +1,67 @@
 /** @jsxImportSource react */
-import { useState } from 'react';
-import { Button } from './ui/button.react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card.react';
+import { AppSidebar } from './app-sidebar';
+import { ChartAreaInteractive } from './chart-area-interactive';
+import { DataTable } from './data-table';
+import { SectionCards } from './section-cards';
+import { SiteHeader } from './site-header';
+import { SidebarInset, SidebarProvider } from './ui/sidebar';
+
+const tableData = [
+  { id: 1, header: 'Pulse CRM', type: 'Website', status: 'Done', target: '18k', limit: '24k', reviewer: 'Eddie Lake' },
+  { id: 2, header: 'Mobile App', type: 'Mobile', status: 'In Progress', target: '12k', limit: '18k', reviewer: 'Jamik Tashpulatov' },
+  { id: 3, header: 'Design System', type: 'Design', status: 'Done', target: '24k', limit: '30k', reviewer: 'Eddie Lake' },
+  { id: 4, header: 'Marketing Campaign', type: 'Marketing', status: 'In Progress', target: '16k', limit: '20k', reviewer: 'Jamik Tashpulatov' },
+  { id: 5, header: 'AI Research', type: 'Research', status: 'Done', target: '31k', limit: '36k', reviewer: 'Eddie Lake' },
+  { id: 6, header: 'Customer Portal', type: 'Portal', status: 'In Progress', target: '14k', limit: '22k', reviewer: 'Jamik Tashpulatov' },
+];
 
 export function DashboardPanel() {
-  const [clicks, setClicks] = useState(0);
-
   return (
-    <div className="space-y-8">
-      {/* Main Dashboard Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome to Octane + React + shadcn/ui</CardTitle>
-          <CardDescription>
-            This is a React component running inside your Octane app via ReactCompat
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">
-            You can use any React component from shadcn/ui or build your own React components and use them with ReactCompat.
-            Each React island adds its own root and scheduling overhead, so prefer boundaries around useful subtrees.
-          </p>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold mb-2">Features</h3>
-              <ul className="text-sm space-y-2 text-muted-foreground">
-                <li>✓ Octane compiled components (.tsrx)</li>
-                <li>✓ React 19 components (this panel)</li>
-                <li>✓ Cloudflare Workers integration</li>
-                <li>✓ Tailwind CSS styling</li>
-                <li>✓ shadcn/ui components</li>
-              </ul>
+    <SidebarProvider defaultOpen={true}>
+      <div className="flex min-h-screen w-full bg-background text-foreground">
+        <AppSidebar />
+        <SidebarInset>
+          <SiteHeader />
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+            <SectionCards />
+            <div className="grid gap-4 xl:grid-cols-[1.5fr_1fr]">
+              <ChartAreaInteractive />
+              <div className="rounded-xl border bg-card p-4 shadow-sm">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-lg font-semibold">Performance</h2>
+                  <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
+                    Live
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { label: 'Open tasks', value: '12', change: '+4.5%' },
+                    { label: 'Conversion', value: '7.8%', change: '+1.2%' },
+                    { label: 'Avg. response', value: '2.4h', change: '-0.6h' },
+                    { label: 'Satisfaction', value: '96%', change: '+2.1%' },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center justify-between rounded-lg border p-3">
+                      <div>
+                        <div className="text-sm text-muted-foreground">{item.label}</div>
+                        <div className="mt-1 text-2xl font-semibold tracking-tight">{item.value}</div>
+                      </div>
+                      <span
+                        className={[
+                          'rounded-full px-2 py-1 text-xs font-medium',
+                          item.change.startsWith('-') ? 'bg-red-500/10 text-red-600' : 'bg-emerald-500/10 text-emerald-600',
+                        ].join(' ')}
+                      >
+                        {item.change}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Interactive Component */}
-      <Card>
-        <CardHeader>
-          <CardTitle>React State Demo</CardTitle>
-          <CardDescription>
-            This button state is managed by React, not Octane
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">
-            Clicks: <span className="font-semibold text-foreground">{clicks}</span>
-          </p>
-        </CardContent>
-        <CardFooter className="flex gap-2">
-          <Button onClick={() => setClicks(clicks + 1)} variant="default">
-            Click Me
-          </Button>
-          <Button onClick={() => setClicks(0)} variant="outline">
-            Reset
-          </Button>
-        </CardFooter>
-      </Card>
-
-      {/* Getting Started */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Getting Started</CardTitle>
-          <CardDescription>
-            Next steps to customize your dashboard
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4 text-sm">
-          <div>
-            <h4 className="font-semibold mb-2">Add more shadcn components:</h4>
-            <code className="bg-muted p-2 rounded text-xs block mb-2 overflow-x-auto">
-              npx shadcn-ui@latest add [component-name]
-            </code>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-2">Deploy to Cloudflare:</h4>
-            <code className="bg-muted p-2 rounded text-xs block mb-2 overflow-x-auto">
-              pnpm run build && npx wrangler deploy
-            </code>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+            <DataTable data={tableData} />
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 }
