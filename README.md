@@ -6,7 +6,7 @@ GitHub repo template setup for all git-repos
 
 This repo includes an Octane app that mixes Octane and React components. For the shadcn + Tailwind flow to work reliably, keep the project on Tailwind v4 and use the Vite integration (`@tailwindcss/vite`) plus the PostCSS plugin (`@tailwindcss/postcss`). The stylesheet entry should use `@import "tailwindcss"`, and per-file JSX pragmas should remain explicit so Octane files and React files do not share the same global JSX runtime.
 
-For Vite 8 projects, use `@vitejs/plugin-react-oxc` instead of the older Babel-based React plugin. Keep the app-level TypeScript config free of a global `jsx` setting; Octane’s `.tsrx` files use file-level pragma directives such as `/** @jsxImportSource octane */` and `/** @jsxImportSource react */` instead.
+For Vite 8 projects, use `@vitejs/plugin-react-oxc` instead of the older Babel-based React plugin. React TSX files need the TypeScript compiler setting `"jsx": "react-jsx"`, while Octane’s `.tsrx` files keep file-level pragma directives such as `/** @jsxImportSource octane */` and `/** @jsxImportSource react */` so each runtime can opt into its own JSX transform explicitly.
 
 ## Included CI Checks
 

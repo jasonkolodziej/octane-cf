@@ -16,10 +16,12 @@ export default defineConfig({
     alias: {
       "@": srcDir,
     },
+    dedupe: ["octane", "react", "react-dom"],
   },
-  // optimizeDeps: {
-  //   include: ["react", "react-dom", "react-dom/client", "octane"],
-  // },
+  optimizeDeps: {
+    include: ["react", "react-dom", "react-dom/client"],
+    exclude: ["octane"],
+  },
   build: {
     target: "esnext",
     chunkSizeWarningLimit: 1500,
