@@ -2,6 +2,10 @@
 
 GitHub repo template setup for all git-repos
 
+## Octane + shadcn / Tailwind setup
+
+This repo includes an Octane app that mixes Octane and React components. For the shadcn + Tailwind flow to work reliably, keep the project on Tailwind v4 and use the Vite integration (`@tailwindcss/vite`) plus the PostCSS plugin (`@tailwindcss/postcss`). The stylesheet entry should use `@import "tailwindcss"`, and per-file JSX pragmas should remain explicit so Octane files and React files do not share the same global JSX runtime.
+
 ## Included CI Checks
 
 The default GitHub Actions workflow in `.github/workflows/ci.yml` runs:
