@@ -17,6 +17,9 @@ export default defineConfig({
       "@": srcDir,
     },
   },
+  // optimizeDeps: {
+  //   include: ["react", "react-dom", "react-dom/client", "octane"],
+  // },
   build: {
     target: "esnext",
     chunkSizeWarningLimit: 1500,
