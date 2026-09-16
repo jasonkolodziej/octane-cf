@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "path": "./octane-app",
+      "name": "app",
+    },
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [],
+  },
+  "extensions": {
+    "recommendations": ["tsrx.tsrx-vscode-plugin"],
+  },
+}

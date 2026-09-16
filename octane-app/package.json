@@ -1,0 +1,22 @@
+{
+  "name": "octane-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsrx-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@octanejs/vite-plugin": "^0.1.54",
+    "octane": "^0.2.11"
+  },
+  "devDependencies": {
+    "@tsrx/prettier-plugin": "^0.4.1",
+    "@tsrx/typescript-plugin": "^0.4.1",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0"
+  }
+}
