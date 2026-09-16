@@ -12,6 +12,10 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "jsxImportSource": "octane",
+    // "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "@tsrx/typescript-plugin"

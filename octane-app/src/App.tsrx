@@ -1,4 +1,7 @@
+/** @jsxImportSource octane */
+import { ReactCompat } from 'octane/react';
 import { Layout } from "./Layout.tsrx";
+import { DashboardPanel } from "./components/DashboardPanel.react";
 
 const LINKS = [
   {
@@ -36,10 +39,9 @@ export function App() @{
           fill="#FF415A"
         />
       </svg>
-      <h1 class="title">octane</h1>
+      <h1 class="title">octane + cloudflare + shadcn</h1>
       <p class="lede">
-        React’s programming model, compiled. Edit src/App.tsrx and save — the page
-        updates without a reload.
+        React's programming model, compiled. With React 19 components via ReactCompat and Cloudflare Workers.
       </p>
       <ul class="links">
         @for (const link of LINKS; key link.href) {
@@ -51,6 +53,12 @@ export function App() @{
           </li>
         }
       </ul>
+    </section>
+
+    <section class="dashboard-section">
+      <ReactCompat>
+        <DashboardPanel />
+      </ReactCompat>
     </section>
 
     <style>
@@ -117,6 +125,11 @@ export function App() @{
         color: var(--text-secondary);
         font-size: 0.82rem;
         line-height: 1.4;
+      }
+      .dashboard-section {
+        width: 100%;
+        max-width: 48rem;
+        margin-top: 3rem;
       }
     </style>
   </Layout>
